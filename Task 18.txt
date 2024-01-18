@@ -1,0 +1,137 @@
+- what is promise.
+ans- A promise is a JavaScript object that represents the eventual completion or failure of an asynchronous operation and its resulting value. It is commonly used in asynchronous programming to handle asynchronous tasks, such as fetching data from a server or reading a file.
+
+    There are three stages:-
+
+    Pending: Initial state, neither fulfilled nor rejected.
+
+    Fulfilled: The operation completed successfully, and the promise has a resulting value.
+
+    Rejected: The operation encountered an error, and the promise has a reason for the failure.
+
+- what is async await.
+ans- The async keyword transforms a regular JavaScript function into an asynchronous function, causing it to return a Promise.
+ 
+     The await keyword is used inside an async function to pause its execution and wait for a Promise to resolve before continuing.
+
+- compare promise and async await (depth).
+ans- Promise:- Promises were introduced in ES6 as a cleaner and more readable way of handling asynchronous code. Promises are objects that represent the eventual completion or failure of an asynchronous operation and provide a cleaner way to handle asynchronous code by chaining .then() and .catch() methods. The .then() method is used to handle successful responses, while the .catch() method is used to handle errors. Promises can be used to execute multiple asynchronous operations in parallel, and to handle dependencies between these operations.
+    
+    #Promise
+
+function fetchData(url) {
+ return new Promise((resolve, reject) => {
+  fetch(url)
+   .then(response => {
+    if (response.ok) {
+     return response.json();
+    } else {
+     throw new Error('Network response was not ok.');
+    }
+   })
+   .then(data => {
+    resolve(data);
+   })
+   .catch(error => {
+    reject(error);
+   });
+ });
+}
+
+
+fetchData('https://api.example.com/data')
+ .then(data => {
+  console.log(data);
+ })
+ .catch(error => {
+  console.error(error);
+ });
+
+  Async-Await:-Async/await is a syntax that was introduced in ES8 (2017) and provides a way to write asynchronous code in a synchronous way. Async/await provides several benefits over Promises. It simplifies the syntax of handling asynchronous operations by removing the need for chaining .then() and .catch() methods. Async/await also provides better error handling, as errors can be caught using try/catch blocks, which provides a more familiar syntax to developers.
+  
+
+  #Async/await
+
+async function fetchData(url) {
+ try {
+  const response = await fetch(url);
+  if (response.ok) {
+   const data = await response.json();
+   return data;
+  } else {
+   throw new Error('Network response was not ok.');
+  }
+ } catch (error) {
+  console.error(error);
+ }
+}
+const data = await fetchData('https://api.example.com/data');
+console.log(data);
+
+
+- what is typescript, how to work typescript.
+ans- TypeScript is a programming language developed by Microsoft that extends JavaScript by adding static types. It allows developers to define the types of variables, function parameters, and return values, providing a layer of safety and improved tooling for large-scale JavaScript applications.
+   
+   for example:-
+function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+
+const result = greet("TypeScript");
+console.log(result);
+
+
+- what is datatype in typescript.
+ans- A data type is a classification of a variable representing the type of data it can hold, such as strings, numbers, boolean, undefined, void, null, any, never, Array and tuple . For example, if we have a string then we can declare it using the string keyword.
+
+- what is array and tuple in typescript.
+ 
+ans-  Array:- In TypeScript, an array is a data structure that allows you to store and manipulate a collection of values. An array is an ordered list of elements, and each element can be of the same or different types. TypeScript provides static typing, which means you can declare the type of elements that an array can contain.
+
+      Tuple:- A tuple is a typed array with a pre-defined length and types for each index. Tuples are great because they allow each element in the array to be a known type of value.
+ 
+     
+- write a program to event and odd number between 1 to 100 using typescript.
+
+ans- // Function to print even and odd numbers between 1 and 100
+function printEvenOddNumbers() {
+    for (let i = 1; i <= 100; i++) {
+        if (i % 2 === 0) {
+            console.log(`${i} is even`);
+        } else {
+            console.log(`${i} is odd`);
+        }
+    }
+}
+
+// Call the function to print even and odd numbers
+printEvenOddNumbers();
+
+
+- write a program to print prime number in typescript.
+
+ans- function isPrime(num: number): boolean {
+    if (num <= 1) {
+        return false;
+    }
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function printPrimes(limit: number): void {
+    for (let i = 2; i <= limit; i++) {
+        if (isPrime(i)) {
+            console.log(i);
+        }
+    }
+}
+
+// Change the limit as needed
+const limit = 50;
+console.log(`Prime numbers up to ${limit}:`);
+printPrimes(limit);
+
